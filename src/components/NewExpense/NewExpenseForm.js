@@ -1,30 +1,36 @@
 import React, { useState } from 'react';
-import './NewExpeseForm.css';
+import './NewExpenseForm.css';
 
-export default function NewExpeseForm(props) {
+export default function NewExpenseForm(props) {
   const [enteredTitle, setEnteredTitle] = useState('');
 
   const [enteredAmount, setEnteredAmount] = useState('');
 
   const [enteredDate, setEnteredDate] = useState('');
 
-  // const [userInput, setUserInput] = useState({
-  //   enteredTitle: '',
-  //   enteredAmount: '',
-  //   enteredDate: '',
-  // });
+  /*
+  const [userInput, setUserInput] = useState({
+    enteredTitle: '',
+    enteredAmount: '',
+    enteredDate: '',
+  });
+  */
 
   const titleChangeHandler = event => {
     setEnteredTitle(event.target.value);
 
-    // setUserInput({
-    //   ...userInput,
-    //   enteredTitle: event.target.value,
-    // });
+    /*
+    setUserInput({
+      ...userInput,
+      enteredTitle: event.target.value,
+    });
+    */
 
-    // setUserInput(prevState => {
-    //   return { ...prevState, enteredTitle: event.target.value };
-    // });
+    /*
+    setUserInput(prevState => {
+      return { ...prevState, enteredTitle: event.target.value };
+    });
+    */
   };
 
   const amountChangeHandler = event => {
@@ -53,7 +59,9 @@ export default function NewExpeseForm(props) {
     // });
   };
 
-  const submitHndler = event => {
+  // Handling Cancel and Show Add New Expense Button
+
+  const submitHandler = event => {
     event.preventDefault();
 
     const expenseData = {
@@ -62,16 +70,16 @@ export default function NewExpeseForm(props) {
       date: new Date(enteredDate),
     };
 
-    console.log(expenseData);
-
     props.onSaveExpenseData(expenseData);
     setEnteredTitle('');
     setEnteredAmount('');
     setEnteredDate('');
+
+    props.hideExpenseForm(false);
   };
 
   return (
-    <form onSubmit={submitHndler}>
+    <form onSubmit={submitHandler}>
       <div className='new-expense__controls'>
         <div className='new-expense__control'>
           <label htmlFor='new-expense__title'>Title</label>
@@ -105,7 +113,11 @@ export default function NewExpeseForm(props) {
           />
         </div>
       </div>
+
       <div className='new-expense__actions'>
+        <button type='button' onClick={props.hideExpenseForm}>
+          Cancel
+        </button>
         <button type='submit'>Add Expense</button>
       </div>
     </form>
