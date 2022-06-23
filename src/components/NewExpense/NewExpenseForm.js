@@ -36,27 +36,31 @@ export default function NewExpenseForm(props) {
   const amountChangeHandler = event => {
     setEnteredAmount(event.target.value);
 
-    // setUserInput({
-    //   ...userInput,
-    //   enteredAmount: event.target.value,
-    // });
+    /*
+    setUserInput({
+      ...userInput,
+      enteredAmount: event.target.value,
+    });
 
-    // setUserInput(prevState => {
-    //   return { ...prevState, enteredAmount: event.target.value };
-    // });
+    setUserInput(prevState => {
+      return { ...prevState, enteredAmount: event.target.value };
+    });
+    */
   };
 
   const dateChangeHandler = event => {
     setEnteredDate(event.target.value);
 
-    // setUserInput({
-    //   ...userInput,
-    //   enteredDate: event.target.value,
-    // });
+    /*
+    setUserInput({
+      ...userInput,
+      enteredDate: event.target.value,
+    });
 
-    // setUserInput(prevState => {
-    //   return { ...prevState, enteredDate: event.target.value };
-    // });
+    setUserInput(prevState => {
+      return { ...prevState, enteredDate: event.target.value };
+    });
+    */
   };
 
   // Handling Cancel and Show Add New Expense Button
@@ -66,7 +70,7 @@ export default function NewExpenseForm(props) {
 
     const expenseData = {
       title: enteredTitle,
-      amount: enteredAmount,
+      amount: +enteredAmount, // adding "+ operator" To convert the string entered amount into a number
       date: new Date(enteredDate),
     };
 
